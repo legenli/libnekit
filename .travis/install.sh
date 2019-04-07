@@ -13,10 +13,16 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
         eval "$(pyenv init -)"
     fi
     
-    export LDFLAGS="-L/usr/local/opt/readline/lib"
-    export CPPFLAGS="-I/usr/local/opt/readline/include"
-    export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
-
+    wget https://www.openssl.org/source/openssl-1.1.0j.tar.gz
+    tar -xvzf openssl-1.1.0j.tar.gz
+    ./openssl-1.1.0j/config --prefix=/usr/local/openssl11 --openssldir=/usr/local/openssl11
+    make
+    make install
+    CONFIGURE_OPTS="--with-openssl=/usr/local/openssl11" \
+    LDFLAGS="-L/usr/local/openssl11/lib" \
+    LD_RUN_PATH="/usr/local/openssl11/lib" \
+    CPPFLAGS="-I/usr/local/openssl11/include" \
+    CFLAGS="-I/usr/local/openssl11/include" \
     pyenv install -s 2.7.10
     pyenv virtualenv -f 2.7.10 conan
     pyenv rehash
