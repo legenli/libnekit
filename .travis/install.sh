@@ -13,8 +13,10 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
         eval "$(pyenv init -)"
     fi
     
-    CFLAGS="-I$(brew --prefix openssl)/include" \
-    LDFLAGS="-L$(brew --prefix openssl)/lib" \
+    export LDFLAGS="-L/usr/local/opt/readline/lib"
+    export CPPFLAGS="-I/usr/local/opt/readline/include"
+    export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
+
     pyenv install -s 2.7.10
     pyenv virtualenv -f 2.7.10 conan
     pyenv rehash
