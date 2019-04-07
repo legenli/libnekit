@@ -8,12 +8,17 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     brew outdated pyenv || brew upgrade pyenv
     brew install pyenv-virtualenv
     brew install cmake || true
-    brew install openssl@1.1
+    brew install readline openssl xz
 
     if which pyenv > /dev/null; then
         eval "$(pyenv init -)"
     fi
     
+    export CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
+    export CFLAGS="-I$(brew --prefix readline)/include $CFLAGS" 
+    export LDFLAGS="-L$(brew --prefix readline)/lib $LDFLAGS"
+    export CFLAGS="-I$(brew --prefix openssl)/include $CFLAGS"
+    export LDFLAGS="-L$(brew --prefix openssl)/lib $LDFLAGS"
     pyenv install -s 2.7.10
     pyenv virtualenv -f 2.7.10 conan
     pyenv rehash
