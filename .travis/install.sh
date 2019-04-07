@@ -14,8 +14,8 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
         eval "$(pyenv init -)"
     fi
     
-    CFLAGS="-I$(brew --prefix openssl)/include" LDFLAGS="-L$(brew --prefix openssl)/lib" pyenv install -v 2.7.16
-    pyenv virtualenv -f 2.7.16 conan
+    CFLAGS="-I$(brew --prefix openssl)/include" LDFLAGS="-L$(brew --prefix openssl)/lib" pyenv install -s 3.7.2
+    pyenv virtualenv -f 3.7.2 conan
     pyenv rehash
     pyenv activate conan
 fi
