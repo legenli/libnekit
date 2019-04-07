@@ -126,9 +126,9 @@ matrix:
       osx_image: xcode10
       env: CONAN_APPLE_CLANG_VERSIONS=10.0 CONAN_BUILD=1 CONAN_BASE_PROFILE="ios" CONAN_RUN_TESTS=0 CONAN_ARCHS="armv7"
 
-    - os: linux
-      language: cpp
-      env: GCC_VERSION=7 MATRIX_EVAL="CC=gcc-${GCC_VERSION} && CXX=g++-${GCC_VERSION}" COMPILE_PREFIX="build-wrapper-linux-x86-64 --out-dir bw-output" CONAN_CONFIG="-s cppstd=14 -s compiler.libcxx=libstdc++11 --build=gtest --build=missing" CONAN_CPU_COUNT=4
+    # - os: linux
+    #   language: cpp
+    #   env: GCC_VERSION=7 MATRIX_EVAL="CC=gcc-${GCC_VERSION} && CXX=g++-${GCC_VERSION}" COMPILE_PREFIX="build-wrapper-linux-x86-64 --out-dir bw-output" CONAN_CONFIG="-s cppstd=14 -s compiler.libcxx=libstdc++11 --build=gtest --build=missing" CONAN_CPU_COUNT=4
 
       addons:
         coverity_scan:

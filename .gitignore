@@ -390,3 +390,4 @@ deps/
 /app/
 .cquery_cached_index/
 /doc
+.vscode/settings.json
